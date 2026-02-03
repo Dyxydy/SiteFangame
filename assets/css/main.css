@@ -4,7 +4,7 @@ h1{
 }
 
 .hero-carousel{
-    padding: 10px;
+    padding: 10%;
 }
 
 .button-link{
@@ -13,16 +13,46 @@ h1{
     justify-content: space-around;
 }
 
-.button-link>button{
+.button-link>button, .btn.btn-primary{
     background-color: var(--color-two);
     color: white;
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
+    transition: 0.2s;
 }
 
-.hero-carte-visite{
-    margin-top: 30px;
+.button-link>button:hover, .btn.btn-primary:hover{
     background-color: var(--color-three);
+    color: var(--color-two);
+    transition: 0.2s;
+}
+
+.hero-carte-visite, .hero-presentation{
+    margin-top: 5%;
+    background-color: var(--color-three);
+}
+
+.align{
     text-align: center;
+}
+
+.cards{
+    display: flex;
+    gap: 5%;
+    margin: 10%;
+}
+
+.card{
+    width: 200px;
+}
+
+.carousel-caption.d-none.d-md-block{
+    background-color: white;
+    opacity: 50%;
+}
+
+.hero-presentation>.align>h2>img{
+    width: 30px;
+    height: 30px;
 }
