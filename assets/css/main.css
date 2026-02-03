@@ -1,3 +1,28 @@
 h1{
     text-align: center;
+    background-color: var(--color-two);
+}
+
+.hero-carousel{
+    padding: 10px;
+}
+
+.button-link{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.button-link>button{
+    background-color: var(--color-two);
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.hero-carte-visite{
+    margin-top: 30px;
+    background-color: var(--color-three);
+    text-align: center;
 }
