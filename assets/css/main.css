@@ -1,58 +1,234 @@
-h1{
-    text-align: center;
-    background-color: var(--color-two);
+/* =========================================
+VARIABLES ET POLICES
+========================================== */
+:root {
+  --red-poke: #ef3e36;
+  --blue-poke: #3b4cca;
+  --yellow-poke: #ffcb05;
+  --grey-dark: #1e1e1e;
+  --grey-light: #f8f8f8;
+  --white: #ffffff;
+  --transition: all 0.3s ease;
 }
 
-.hero-carousel{
-    padding: 10%;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;700&display=swap');
+
+
+/* =========================================
+BASE DU SITE (body, textes)
+========================================== */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--grey-dark);
+  background: linear-gradient(180deg, var(--white) 0%, var(--grey-light) 100%);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-.button-link{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+
+
+
+
+/* =========================================
+HERO PRÉSENTATION ANIMÉE
+========================================== */
+.hero-presentation {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  padding: 6rem 2rem;
+  z-index: 1;
+  background: linear-gradient(-45deg, #3b4cca, #ef3e36, #ffcb05, #3b4cca);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
 }
 
-.button-link>button, .btn.btn-primary{
-    background-color: var(--color-two);
-    color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    transition: 0.2s;
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.button-link>button:hover, .btn.btn-primary:hover{
-    background-color: var(--color-three);
-    color: var(--color-two);
-    transition: 0.2s;
+.hero-presentation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.15), transparent 70%);
+  animation: pulseLight 6s ease-in-out infinite;
+  z-index: 0;
 }
 
-.hero-carte-visite, .hero-presentation{
-    margin-top: 5%;
-    background-color: var(--color-three);
+@keyframes pulseLight {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
 }
 
-.align{
-    text-align: center;
+.hero-presentation .align {
+  position: relative;
+  z-index: 2;
 }
 
-.cards{
-    display: flex;
-    gap: 5%;
-    margin: 10%;
+.hero-presentation h2 img {
+  width: 60px;
+  vertical-align: middle;
+  animation: floatSphere 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px white);
 }
 
-.card{
-    width: 200px;
+@keyframes floatSphere {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.carousel-caption.d-none.d-md-block{
-    background-color: white;
-    opacity: 50%;
+
+/* =========================================
+BOUTONS
+========================================== */
+/* CONTENEUR DES BOUTONS */
+/*========================================== */
+
+.button-link {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 3rem 0;
+  animation: riseButtons 1s ease forwards;
 }
 
-.hero-presentation>.align>h2>img{
-    width: 30px;
-    height: 30px;
+@keyframes riseButtons {
+  0% { opacity: 0; transform: translateY(40px); }
+  60% { opacity: 1; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.button-link > button {
+  background: linear-gradient(90deg, var(--blue-poke), var(--red-poke));
+  background-size: 200% 200%; /* crée du mouvement dans le dégradé */
+  background-position: left center;
+  color: var(--white);
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-position 0.8s ease, color 0.5s ease,
+              transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+}
+
+.button-link > button:hover {
+  background: linear-gradient(90deg, var(--yellow-poke), var(--red-poke));
+  background-size: 200% 200%;
+  background-position: right center; /* défilement fluide du dégradé */
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(255, 203, 5, 0.6);
+}
+
+
+/* =========================================
+CAROUSEL
+========================================== */
+.hero-carousel {
+  position: relative;
+  height: 75vh;
+  overflow: hidden;
+  margin: 4rem auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-inner img {
+  height: 75vh;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: transform 1.5s ease;
+}
+
+.carousel-item.active img {
+  transform: scale(1.05);
+}
+
+.carousel-caption {
+  bottom: 8%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  animation: fadeInSlide 1.2s ease forwards;
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(0 0 8px var(--yellow-poke));
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px #ffcb05);
+}
+
+
+/* =========================================
+CARTE DE VISITE (VILLES)
+========================================== */
+.hero-carte-visite {
+  background: linear-gradient(90deg, #fafafa, #fff);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  width: 250px;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+  background-color: var(--white);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  color: var(--blue-poke);
+  font-weight: bold;
 }

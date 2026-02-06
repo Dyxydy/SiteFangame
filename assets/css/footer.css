@@ -1,0 +1,23 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: radial-gradient(circle at center, var(--blue-poke), #202040);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px var(--blue-poke); }
+  50% { text-shadow: 0 0 20px var(--yellow-poke); }
+}
+[data-anim] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-anim].visible {
+  opacity: 1;
+  transform: translateY(0);
+}

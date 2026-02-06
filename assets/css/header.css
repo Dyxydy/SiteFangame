@@ -1,5 +1,28 @@
+/* =========================================
+HEADER ET NAVBAR
+========================================== */
+.navbar-brand {
+  font-family: "Press Start 2P", sans-serif;
+  color: var(--yellow-poke) !important;
+  text-shadow: 0 0 10px var(--yellow-poke), 0 0 20px var(--red-poke);
+  transition: var(--transition);
+}
+
+.navbar-brand:hover {
+  filter: brightness(1.2);
+}
+
 .container-fluid{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: var(--color-one);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
